@@ -1,0 +1,469 @@
+import React from 'react';
+import { 
+  FaCheckCircle,
+  FaUsers,
+  FaCloud,
+  FaDatabase,
+  FaMobileAlt,
+  FaShieldAlt,
+  FaHandshake,
+  FaSearch,
+  FaClipboardCheck,
+  FaBriefcase,
+  FaClock
+} from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+
+const ItConsultingPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  // Solutions Data with navigation paths - Removed IT Consulting solution
+  const solutions = [
+    {
+      icon: <FaUsers className="text-2xl text-[#0A6B7E]" />,
+      title: "IT Outsourcing",
+      description: "Comprehensive outsourcing solutions for enhanced operational efficiency",
+      path: "/it-outsourcing"
+    },
+    {
+      icon: <FaClipboardCheck className="text-2xl text-[#36B5A0]" />,
+      title: "Testing & QA",
+      description: "Quality assurance and testing services for flawless software delivery",
+      path: "/testing-qa"
+    },
+    {
+      icon: <FaBriefcase className="text-2xl text-[#0A6B7E]" />,
+      title: "Mortgage Solutions",
+      description: "Specialized technology solutions for the mortgage and banking industry",
+      path: "/mortgage-solutions"
+    },
+    {
+      icon: <FaMobileAlt className="text-2xl text-[#36B5A0]" />,
+      title: "Power Apps",
+      description: "Custom application development for business process automation",
+      path: "/power-apps"
+    },
+    {
+      icon: <FaCloud className="text-2xl text-[#0A6B7E]" />,
+      title: "Cloud Solutions",
+      description: "Cloud migration, implementation, and management services",
+      path: "/cloud-solutions"
+    },
+    {
+      icon: <FaDatabase className="text-2xl text-[#36B5A0]" />,
+      title: "BI & Visualization",
+      description: "Business intelligence and data visualization for informed decision-making",
+      path: "/bi-visualization"
+    }
+    // IT Consulting solution has been removed as requested
+  ];
+
+  // Consulting Portfolio
+  const consultingPortfolio = [
+    "Business Analysis",
+    "Process Consulting",
+    "Technology Consulting",
+    "Data Visualization",
+    "Software quality assurance and testing"
+  ];
+
+  // Important Points
+  const importantPoints = [
+    {
+      icon: <FaSearch className="text-xl text-[#36B5A0]" />,
+      title: "Understanding & Listening",
+      description: "Our foremost offering is looking and listening; viewing and understanding to figure opportunities and risks"
+    },
+    {
+      icon: <FaHandshake className="text-xl text-[#0A6B7E]" />,
+      title: "Permanent & Direct Hire",
+      description: "We assess, attract, and select the best talent through permanent contracts and direct hire services"
+    },
+    {
+      icon: <FaClock className="text-xl text-[#36B5A0]" />,
+      title: "Flexible Contract Staffing",
+      description: "Short/long term contract staffing solutions for project-based work with immediate resources"
+    },
+    {
+      icon: <FaShieldAlt className="text-xl text-[#0A6B7E]" />,
+      title: "Cost Optimization",
+      description: "Save money and labor resources with our administrative staffing model and no employee-related expenses"
+    }
+  ];
+
+  // Benefits
+//   const benefits = [
+//     "Cross-industry advisory services",
+//     "Strategy development and management solutions",
+//     "Expert work performed for client benefit",
+//     "Extended planning and promotion across the organization",
+//     "Strategic formulation of outsourcing solutions"
+//   ];
+
+  // Function to handle solution click
+  const handleSolutionClick = (path: string) => {
+    navigate(path);
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+        
+      {/* Hero Section with Video Background */}
+      <section className="pt-48 pb-20 relative overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/solutions-bg.mp4" type="video/mp4" />
+            {/* Fallback background if video doesn't load */}
+            <div className="absolute inset-0" style={{
+              background: 'linear-gradient(135deg, #36B5A0 0%, #0A6B7E 50%, #07284C 100%)'
+            }}></div>
+          </video>
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/40"></div>
+          {/* Gradient overlay */}
+          <div className="absolute inset-0" style={{
+            background: 'linear-gradient(to bottom, rgba(7, 40, 76, 0.7) 0%, rgba(10, 107, 126, 0.5) 50%, rgba(54, 181, 160, 0.3) 100%)'
+          }}></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-left w-full">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
+              We Build Unique & Custom Solutions
+            </h1>
+            <p className="text-base md:text-lg text-white/90 mb-8">
+              Functional & technology enabled solutions to solve business problems
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content Section */}
+      <section className="py-5 bg-white">
+        <div className="container mx-auto px-4 mt-10">
+          <div className="max-w-5xl mx-auto">
+            {/* Title added */}
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-center">
+              IT <span className="text-[#0A6B7E]">Consulting</span>
+            </h2>
+            
+            {/* Single detailed paragraph - 4-5 lines */}
+            <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
+              <span className="font-semibold text-[#07284C]">For small to medium-sized organizations,</span> recognizing the right staffing and technology solutions is critical to operational success. Our IT consulting services provide cross-industry expertise to help you build effective strategies and deliver measurable results. We listen intently, analyze thoroughly, and identify both opportunities and risks specific to your business environment. By leveraging our specialized expertise in tailored outsourcing and technology solutions, you gain a strategic partner dedicated to optimizing processes and driving sustainable growth.
+            </p>
+          </div>
+
+          {/* Modified Two Columns Solutions Section - Now showing 6 solutions only */}
+<div className="py-3 mt-8">
+  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 text-center">
+    Our <span className="text-[#36B5A0]">Solutions Portfolio</span>
+  </h2>
+  
+  {/* 3 Rows Grid Container - Now showing only 6 solutions */}
+  <div className="space-y-4">
+    {/* Row 1 */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3">
+      {/* Solution 1 */}
+      <div 
+        onClick={() => handleSolutionClick(solutions[0].path)}
+        className="bg-white rounded-xl border border-gray-200 p-4 hover:shadow-xl transition-all duration-300 hover:border-[#36B5A0]/50 cursor-pointer group relative"
+      >
+        <div className="space-y-2">
+          {/* First Row: Title with Arrow */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <h3 className="text-sm md:text-lg font-semibold text-gray-800 group-hover:text-[#36B5A0] transition-colors duration-300">
+                {solutions[0].title}
+              </h3>
+            </div>
+            {/* Upward-facing arrow with border radius - Reduced size for mobile */}
+            <div className="group-hover:bg-[#36B5A0]/10 transition-colors duration-300">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="w-6 h-6 md:h-8 md:w-8 text-[#36B5A0] transform rotate-45 group-hover:rotate-90 transition-transform duration-300" 
+                viewBox="0 0 20 20" 
+                fill="currentColor"
+              >
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          
+          {/* Second Row: Description */}
+          <div className="pt-3 border-t border-gray-100">
+            <p className="text-gray-600 text-xs md:text-sm">
+              {solutions[0].description}
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Solution 2 */}
+      <div 
+        onClick={() => handleSolutionClick(solutions[1].path)}
+        className="bg-white rounded-xl border border-gray-200 p-4 hover:shadow-xl transition-all duration-300 hover:border-[#0A6B7E]/50 cursor-pointer group"
+      >
+        <div className="space-y-3">
+          {/* First Row: Title with Arrow */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <h3 className="text-med md:text-lg font-semibold text-gray-800 group-hover:text-[#0A6B7E] transition-colors duration-300">
+                {solutions[1].title}
+              </h3>
+            </div>
+            <div className="group-hover:bg-[#36B5A0]/10 transition-colors duration-300">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="w-6 h-6 md:h-8 md:w-8 text-[#36B5A0] transform rotate-45 group-hover:rotate-90 transition-transform duration-300" 
+                viewBox="0 0 20 20" 
+                fill="currentColor"
+              >
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          
+          {/* Second Row: Description */}
+          <div className="pt-3 border-t border-gray-100">
+            <p className="text-xs md:text-sm text-gray-600 text-sm">
+              {solutions[1].description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {/* Row 2 */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3">
+      {/* Solution 3 */}
+      <div 
+        onClick={() => handleSolutionClick(solutions[2].path)}
+        className="bg-white rounded-xl border border-gray-200 p-4 hover:shadow-xl transition-all duration-300 hover:border-[#36B5A0]/50 cursor-pointer group"
+      >
+        <div className="space-y-3">
+          {/* First Row: Title with Arrow */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <h3 className="text-med md:text-lg font-semibold text-gray-800 group-hover:text-[#36B5A0] transition-colors duration-300">
+                {solutions[2].title}
+              </h3>
+            </div>
+            <div className="group-hover:bg-[#36B5A0]/10 transition-colors duration-300">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-6 w-6 md:h-8 md:w-8 text-[#36B5A0] transform rotate-45 group-hover:rotate-90 transition-transform duration-300" 
+                viewBox="0 0 20 20" 
+                fill="currentColor"
+              >
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          
+          {/* Second Row: Description */}
+          <div className="pt-3 border-t border-gray-100">
+            <p className="text-xs md:text-sm text-gray-600 text-sm">
+              {solutions[2].description}
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Solution 4 */}
+      <div 
+        onClick={() => handleSolutionClick(solutions[3].path)}
+        className="bg-white rounded-xl border border-gray-200 p-4 hover:shadow-xl transition-all duration-300 hover:border-[#0A6B7E]/50 cursor-pointer group"
+      >
+        <div className="space-y-3">
+          {/* First Row: Title with Arrow */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <h3 className="text-med md:text-lg font-semibold text-gray-800 group-hover:text-[#0A6B7E] transition-colors duration-300">
+                {solutions[3].title}
+              </h3>
+            </div>
+            <div className="group-hover:bg-[#36B5A0]/10 transition-colors duration-300">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-6 w-6 md:h-8 md:w-8 text-[#36B5A0] transform rotate-45 group-hover:rotate-90 transition-transform duration-300" 
+                viewBox="0 0 20 20" 
+                fill="currentColor"
+              >
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          
+          {/* Second Row: Description */}
+          <div className="pt-3 border-t border-gray-100">
+            <p className="text-xs md:text-sm text-gray-600 text-sm">
+              {solutions[3].description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {/* Row 3 */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3">
+      {/* Solution 5 */}
+      <div 
+        onClick={() => handleSolutionClick(solutions[4].path)}
+        className="bg-white rounded-xl border border-gray-200 p-4 hover:shadow-xl transition-all duration-300 hover:border-[#36B5A0]/50 cursor-pointer group"
+      >
+        <div className="space-y-3">
+          {/* First Row: Title with Arrow */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <h3 className="text-med md:text-lg font-semibold text-gray-800 group-hover:text-[#36B5A0] transition-colors duration-300">
+                {solutions[4].title}
+              </h3>
+            </div>
+            <div className="group-hover:bg-[#36B5A0]/10 transition-colors duration-300">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-6 w-6 md:h-8 md:w-8 text-[#36B5A0] transform rotate-45 group-hover:rotate-90 transition-transform duration-300" 
+                viewBox="0 0 20 20" 
+                fill="currentColor"
+              >
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          
+          {/* Second Row: Description */}
+          <div className="pt-3 border-t border-gray-100">
+            <p className="text-xs md:text-sm text-gray-600 text-sm">
+              {solutions[4].description}
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Solution 6 */}
+      <div 
+        onClick={() => handleSolutionClick(solutions[5].path)}
+        className="bg-white rounded-xl border border-gray-200 p-4 hover:shadow-xl transition-all duration-300 hover:border-[#0A6B7E]/50 cursor-pointer group"
+      >
+        <div className="space-y-3">
+          {/* First Row: Title with Arrow */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <h3 className="text-med md:text-lg font-semibold text-gray-800 group-hover:text-[#0A6B7E] transition-colors duration-300">
+                {solutions[5].title}
+              </h3>
+            </div>
+            <div className="group-hover:bg-[#36B5A0]/10 transition-colors duration-300">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="w-6 h-6 md:h-8 md:w-8 text-[#36B5A0] transform rotate-45 group-hover:rotate-90 transition-transform duration-300" 
+                viewBox="0 0 20 20" 
+                fill="currentColor"
+              >
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          
+          {/* Second Row: Description */}
+          <div className="pt-3 border-t border-gray-100">
+            <p className="text-xs md:text-sm text-gray-600 text-sm">
+              {solutions[5].description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          {/* Consulting Portfolio Section */}
+          <div className="bg-gradient-to-r from-[#36B5A0]/10 to-[#0A6B7E]/10 rounded-2xl p-4 py-5 ">
+            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 mt-10">
+              {/* Left side: Title, paragraph, and important points */}
+              <div className="lg:w-1/2">
+                <div className="">
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
+                    Our <span className="text-[#0A6B7E]">Consulting</span>
+                  </h3>
+                  <p className="text-xs md:text-sm text-gray-700 mb-3">
+                    Comprehensive consulting services tailored to your business needs with expert solutions designed to drive your success.
+                  </p>
+                </div>
+                
+                {/* Important points (the 5 business items) */}
+                <div className="grid sm:grid-cols-2 md:grid-cols-1 gap-4">
+                  {consultingPortfolio.map((item, index) => (
+                    <div key={index} className="flex items-start text-left bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
+                      <FaCheckCircle className="text-[#36B5A0] mr-3 mt-1 flex-shrink-0" />
+                      <span className="font-medium text-gray-800">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Right side: Image */}
+              <div className="lg:w-1/2 ">
+                <div className=" p-4 h-full flex items-center justify-center">
+                  {/* Actual image from public folder */}
+                  <div className="relative w-full h-full 1 overflow-hidden">
+                    <img 
+                      src="/solutions-img.png" 
+                      alt="IT Consulting Solutions"
+                      className="w-full h-full object-cover rounded-xl md:mt-12"
+                      onError={(e) => {
+                        // Fallback if image doesn't load
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.parentElement!.innerHTML = `
+                          <div class="absolute inset-0 bg-gradient-to-br from-[#36B5A0]/20 to-[#0A6B7E]/20 flex items-center justify-center">
+                            <div class="text-center p-4">
+                              <svg class="w-16 h-16 text-[#0A6B7E] mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
+                              </svg>
+                              <p class="text-[#07284C] font-semibold">IT Consulting Solutions</p>
+                              <p class="text-gray-600 text-sm mt-2">Strategic technology consulting for business transformation</p>
+                            </div>
+                          </div>
+                        `;
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Important Points Section */}
+          <div className="py-5">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-center mt-10">
+              Key <span className="text-[#0A6B7E]">Advantages</span>
+            </h2>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {importantPoints.map((point, index) => (
+                <div key={index} className="bg-white p-6 hover:border hover:rounded-xl hover:border-[#36B5A0] transition-all duration-300 hover:shadow-lg">
+                  <div className="flex flex-col h-full">
+                    {/* <div className="p-3 bg-gray-50 rounded-lg w-fit mb-4">
+                      {point.icon}
+                    </div> */}
+                    <h3 className="text-sm md:text-base font-semibold text-gray-800 mb-3">{point.title}</h3>
+                    <p className="text-xs md:text-sm text-gray-600 flex-1">{point.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default ItConsultingPage;
