@@ -194,11 +194,11 @@ const Footersection: React.FC = () => {
 
           {/* Middle */}
           <div className="flex flex-wrap justify-center space-x-2 text-xs md:text-sm text-gray-400">
-            <button onClick={() => navigate("/privacy-policy")} className="hover:text-gray-200 cursor-pointer">Privacy Policy</button>
+            <button onClick={() => navigate("/")} className="hover:text-gray-200 cursor-pointer">Privacy Policy</button>
             <span>|</span>
-            <button onClick={() => navigate("/terms")} className="hover:text-gray-200 cursor-pointer">Terms of Use</button>
+            <button onClick={() => navigate("/")} className="hover:text-gray-200 cursor-pointer">Terms of Use</button>
             <span>|</span>
-            <button onClick={() => navigate("/cookie-policy")} className="hover:text-gray-200 cursor-pointer">Cookie Policy</button>
+            <button onClick={() => navigate("/")} className="hover:text-gray-200 cursor-pointer">Cookie Policy</button>
           </div>
 
           {/* Right: Social Icons */}
