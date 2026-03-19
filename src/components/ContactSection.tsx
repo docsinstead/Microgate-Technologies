@@ -95,10 +95,7 @@ const ContactSection: React.FC = () => {
                       Microgate Technologies Private Ltd
                     </p>
                     <p className="text-gray-600 text-sm">
-                      123 Technology Park,
-                      Innovation Road,<br />
-                      Hyderabad, Telangana 500081
-                      India
+                      RR Commercial, Plot No. 1371, 100 Feet Rd, Ayyappa Society, VIP Hills, Silicon Valley, Madhapur, Hyderabad, Telangana-500081.
                     </p>
                     <button 
                       onClick={handleMapClick}
@@ -133,7 +130,7 @@ const ContactSection: React.FC = () => {
                         onClick={handlePhoneClick}
                         className="text-lg font-semibold text-[#0A6B7E] hover:text-[#36B5A0] transition-colors cursor-pointer"
                       >
-                        +91 12345 67890
+                        +91 9515650277
                       </button>
                       {/* <p className="text-gray-500 text-xs mt-1">Click to call</p> */}
                     </div>
@@ -142,7 +139,7 @@ const ContactSection: React.FC = () => {
                         onClick={handleWhatsAppClick}
                         className="text-base font-semibold text-green-600 hover:text-green-500 transition-colors cursor-pointer"
                       >
-                        WhatsApp: +91 12345 67890
+                        WhatsApp: +91 9515650277
                       </button>
                       {/* <p className="text-gray-500 text-xs mt-1">Click for WhatsApp</p> */}
                     </div>
@@ -173,7 +170,7 @@ const ContactSection: React.FC = () => {
                         onClick={handleEmailClick}
                         className="text-base font-semibold text-[#0A6B7E] hover:text-[#36B5A0] transition-colors break-words cursor-pointer"
                       >
-                        info@microgatetech.com
+                         info@microtechnology.org
                       </button>
                       {/* <p className="text-gray-500 text-xs mt-1">Click to email</p> */}
                     </div>

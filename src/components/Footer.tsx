@@ -86,9 +86,9 @@ const Footersection: React.FC = () => {
               <div className="flex items-start gap-3 text-left">
                 <FaMapMarkerAlt className="text-blue-400 text-lg mt-1" />
                 <div>
-                  <p>Microgate Technologies,</p>
-                  <p>MIG: 648, KPHB Phase 2</p>
-                  <p>Kukatpally, Hyderabad-72.</p>
+                  <p>RR Commercial, Plot No. 1371, 100 Feet Rd, Ayyappa Society, VIP Hills, Silicon Valley, Madhapur, Hyderabad, Telangana-500081</p>
+                  {/* <p>MIG: 648, KPHB Phase 2</p>
+                  <p>Kukatpally, Hyderabad-72.</p> */}
                   <button 
                     onClick={() => window.open("https://maps.google.com/?q=Microgate+Technologies+KPHB+Phase+2+Hyderabad", "_blank")}
                     className="text-blue-300 hover:text-white text-xs mt-1"
@@ -104,7 +104,7 @@ const Footersection: React.FC = () => {
                   onClick={() => window.location.href = "mailto:info@microgatetechnologies.com"}
                   className="hover:text-white cursor-pointer"
                 >
-                  info@microgatetechnologies.com
+                  info@microtechnology.org
                 </button>
               </div>
               
@@ -115,13 +115,13 @@ const Footersection: React.FC = () => {
                     onClick={() => window.location.href = "tel:+911234567890"}
                     className="hover:text-white cursor-pointer block"
                   >
-                    +91 1234 567890
+                    +91 9515650277
                   </button>
                   <button 
                     onClick={() => window.open("https://wa.me/911234567890", "_blank")}
                     className="text-green-400 hover:text-green-300 text-xs"
                   >
-                    WhatsApp: +91 1234 567890
+                    WhatsApp:  +91 9515650277
                   </button>
                 </div>
               </div>

@@ -38,6 +38,10 @@ import NetworkingPage from './pages/CoreTechnologies/NetworkingPage'
 import VLSIPage from './pages/CoreTechnologies/VLSIPage'
 import DesignVerificationPage from './pages/CoreTechnologies/DesignVerificationPage'
 import ContactSection from './components/ContactSection'
+import RevenueCycle from './pages/Healthcare-Submenu/RevenueCycle'
+import CodingHealth from './pages/Healthcare-Submenu/CodingHealth'
+import ClaimsManagement from './pages/Healthcare-Submenu/ClaimsManagement'
+import MemberManagement from './pages/Healthcare-Submenu/MemberManagement'
 
 function App() {
   return (
@@ -88,6 +92,10 @@ function App() {
             <Route path='/vlsi-design' element={<VLSIPage/>}/>
             <Route path='/design-verification' element={<DesignVerificationPage/>}/>
             <Route path='/contact-us' element={<ContactSection/>}/>
+            <Route path='/revenue-cycle-management' element={<RevenueCycle/>}/>
+            <Route path='/coding-health-information-management' element={<CodingHealth/>}/>
+            <Route path='/claims-management' element={<ClaimsManagement/>}/>
+            <Route path='/member-management' element={<MemberManagement/>}/>
           </Routes>
           <Footersection/>
         </div>

@@ -5,7 +5,11 @@ import { Menu, X, ChevronDown } from "lucide-react";
 interface NavItem {
   title: string;
   href: string;
-  submenu?: { title: string; href: string }[];
+  submenu?: {
+    title: string;
+    href: string;
+    submenu?: { title: string; href: string }[];
+  }[];
 }
 
 const navLinks: NavItem[] = [
@@ -41,7 +45,16 @@ const navLinks: NavItem[] = [
       { title: "Financial Services", href: "/financial-services" },
       { title: "Consumer Goods", href: "/consumer-goods" },
       { title: "Insurance", href: "/insurance"},
-      { title: "Health Care", href: "/health-care" },
+      { 
+        title: "Health Care", 
+        href: "/health-care",
+        submenu: [
+          { title: "Revenue Cycle Management", href: "/revenue-cycle-management" },
+          { title: "Coding / Health Information Management", href: "/coding-health-information-management" },
+          { title: "Claims Management", href: "/claims-management" },
+          { title: "Member Management", href: "/member-management" },
+        ]
+      },
       { title: "Telecommunication", href: "/telecommunication" },
       { title: "Hospitality", href: "/hospitality" },
     ], 
@@ -75,6 +88,7 @@ const navLinks: NavItem[] = [
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openNestedDropdown, setOpenNestedDropdown] = useState<string | null>(null);
   const location = useLocation();
   const [activeLink, setActiveLink] = useState("/");
   const navigate = useNavigate();
@@ -83,6 +97,13 @@ const Header: React.FC = () => {
   useEffect(() => {
     const path = location.pathname;
     
+    // Check if current path is a healthcare submenu page
+    const isHealthcareSubmenu = 
+      path === "/revenue-cycle-management" ||
+      path === "/coding-health-information-management" ||
+      path === "/claims-management" ||
+      path === "/member-management";
+    
     // Find which nav link matches the current path
     const activeNavItem = navLinks.find(link => 
       path === link.href || 
@@ -90,7 +111,13 @@ const Header: React.FC = () => {
       (link.href !== "/" && path.startsWith(link.href))
     );
     
-    if (activeNavItem) {
+    if (isHealthcareSubmenu) {
+      // If on healthcare submenu, set Industries as active
+      const industriesLink = navLinks.find(link => link.title === "Industries");
+      if (industriesLink) {
+        setActiveLink(industriesLink.href);
+      }
+    } else if (activeNavItem) {
       setActiveLink(activeNavItem.href);
     } else {
       setActiveLink("/");
@@ -100,11 +127,17 @@ const Header: React.FC = () => {
   const handleMouseEnter = (linkTitle: string) => {
     if (navLinks.find(link => link.title === linkTitle)?.submenu) {
       setOpenDropdown(linkTitle);
+      setOpenNestedDropdown(null); // Close nested dropdown when opening new main dropdown
     }
   };
 
   const handleMouseLeave = () => {
     setOpenDropdown(null);
+    setOpenNestedDropdown(null);
+  };
+
+  const handleNestedMouseEnter = (itemTitle: string) => {
+    setOpenNestedDropdown(itemTitle);
   };
 
   return (
@@ -150,22 +183,66 @@ const Header: React.FC = () => {
               </Link>
 
               {/* Dropdown for all navlinks with submenu */}
-              {link.submenu && openDropdown === link.title && (
-                <div className="absolute left-0 top-full mt-0 text-left bg-white border border-gray-200 shadow-lg rounded-lg overflow-hidden z-50 min-w-[250px] max-h-[400px] overflow-y-auto">
-                  {link.submenu.map((item) => (
-                    <Link
-                      key={item.title}
-                      to={item.href}
-                      className={`block px-5 py-3 text-gray-700 hover:bg-blue-50 hover:text-[#1E3A8A] text-sm whitespace-nowrap transition-colors border-b border-gray-100 last:border-b-0 ${
-                        location.pathname === item.href ? "bg-blue-50 text-[#1E3A8A]" : ""
-                      }`}
-                      onClick={() => setOpenDropdown(null)}
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
-                </div>
-              )}
+{link.submenu && openDropdown === link.title && (
+  <div className="absolute left-0 top-full mt-0 text-left bg-white border border-gray-200 shadow-lg rounded-lg z-50 min-w-[250px]">
+    {link.submenu.map((item) => (
+      <div
+        key={item.title}
+        className="relative"
+        onMouseEnter={() => {
+          if (item.submenu) {
+            handleNestedMouseEnter(item.title);
+          }
+        }}
+        onMouseLeave={() => setOpenNestedDropdown(null)}
+      >
+        {item.submenu ? (
+          <>
+            <div
+              className={`flex justify-between items-center px-5 py-3 text-gray-700 hover:bg-blue-50 hover:text-[#1E3A8A] text-sm whitespace-nowrap transition-colors border-b border-gray-100 last:border-b-0 cursor-pointer ${
+                location.pathname === item.href ? "bg-blue-50 text-[#1E3A8A]" : ""
+              }`}
+            >
+              <span>{item.title}</span>
+              <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+            </div>
+            
+            {/* Nested dropdown for Healthcare sub-items */}
+            {openNestedDropdown === item.title && item.submenu && (
+              <div className="absolute left-full top-0 ml-1 text-left bg-white border border-gray-200 shadow-lg rounded-lg z-50 min-w-[250px]">
+                {item.submenu.map((nestedItem) => (
+                  <Link
+                    key={nestedItem.title}
+                    to={nestedItem.href}
+                    className={`block px-5 py-3 text-gray-700 hover:bg-blue-50 hover:text-[#1E3A8A] text-sm whitespace-nowrap transition-colors border-b border-gray-100 last:border-b-0 ${
+                      location.pathname === nestedItem.href ? "bg-blue-50 text-[#1E3A8A]" : ""
+                    }`}
+                    onClick={() => {
+                      setOpenDropdown(null);
+                      setOpenNestedDropdown(null);
+                    }}
+                  >
+                    {nestedItem.title}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </>
+        ) : (
+          <Link
+            to={item.href}
+            className={`block px-5 py-3 text-gray-700 hover:bg-blue-50 hover:text-[#1E3A8A] text-sm whitespace-nowrap transition-colors border-b border-gray-100 last:border-b-0 ${
+              location.pathname === item.href ? "bg-blue-50 text-[#1E3A8A]" : ""
+            }`}
+            onClick={() => setOpenDropdown(null)}
+          >
+            {item.title}
+          </Link>
+        )}
+      </div>
+    ))}
+  </div>
+)}
             </div>
           ))}
         </nav>
@@ -198,6 +275,7 @@ const Header: React.FC = () => {
                 onClick={() => {
                   if (link.submenu) {
                     setOpenDropdown(openDropdown === link.title ? null : link.title);
+                    setOpenNestedDropdown(null); // Close nested dropdown when toggling main
                   } else {
                     navigate(link.href);
                     setMenuOpen(false);
@@ -217,21 +295,65 @@ const Header: React.FC = () => {
               {link.submenu && openDropdown === link.title && (
                 <div className="pl-6 mt-1 text-left space-y-1">
                   {link.submenu.map((item) => (
-                    <Link
-                      key={item.title}
-                      to={item.href}
-                      className={`block py-2.5 text-sm px-3 ${
-                        location.pathname === item.href 
-                          ? "text-[#1E3A8A] font-medium" 
-                          : "text-gray-600 hover:text-[#1E3A8A]"
-                      }`}
-                      onClick={() => {
-                        setMenuOpen(false);
-                        setOpenDropdown(null);
-                      }}
-                    >
-                      {item.title}
-                    </Link>
+                    <div key={item.title}>
+                      {item.submenu ? (
+                        <>
+                          <div
+                            className={`flex justify-between items-center py-2.5 text-sm px-3 cursor-pointer ${
+                              location.pathname === item.href 
+                                ? "text-[#1E3A8A] font-medium" 
+                                : "text-gray-600 hover:text-[#1E3A8A]"
+                            }`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setOpenNestedDropdown(openNestedDropdown === item.title ? null : item.title);
+                            }}
+                          >
+                            <span>{item.title}</span>
+                            <ChevronDown className={`w-3 h-3 transition-transform ${openNestedDropdown === item.title ? 'rotate-180' : ''}`} />
+                          </div>
+                          
+                          {/* Nested dropdown for mobile */}
+                          {openNestedDropdown === item.title && item.submenu && (
+                            <div className="pl-4 mt-1 space-y-1">
+                              {item.submenu.map((nestedItem) => (
+                                <Link
+                                  key={nestedItem.title}
+                                  to={nestedItem.href}
+                                  className={`block py-2 text-sm px-3 ${
+                                    location.pathname === nestedItem.href 
+                                      ? "text-[#1E3A8A] font-medium" 
+                                      : "text-gray-500 hover:text-[#1E3A8A]"
+                                  }`}
+                                  onClick={() => {
+                                    setMenuOpen(false);
+                                    setOpenDropdown(null);
+                                    setOpenNestedDropdown(null);
+                                  }}
+                                >
+                                  {nestedItem.title}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <Link
+                          to={item.href}
+                          className={`block py-2.5 text-sm px-3 ${
+                            location.pathname === item.href 
+                              ? "text-[#1E3A8A] font-medium" 
+                              : "text-gray-600 hover:text-[#1E3A8A]"
+                          }`}
+                          onClick={() => {
+                            setMenuOpen(false);
+                            setOpenDropdown(null);
+                          }}
+                        >
+                          {item.title}
+                        </Link>
+                      )}
+                    </div>
                   ))}
                 </div>
               )}
